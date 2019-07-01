@@ -35,7 +35,11 @@ class PokemonForm extends React.Component {
         "Content-Type" : "application/json"
       },
       body: JSON.stringify(newPokemon)
-    }).then(e.target.reset())  
+    }).then(res => res.json())
+    .then(pokemon => {
+      this.props.addPokemon(pokemon)
+    })
+    e.target.reset()
   }
 
   handleChange = (e) => {

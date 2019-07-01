@@ -10,13 +10,24 @@ class PokemonPage extends React.Component {
     super()
     this.state = {
       pokemons: [],
-      filteredPokemons: null
+      filteredPokemons: null,
+      update: false
     }
+  }
+
+  formUpdate = () => {
+    this.setState({update: true})
+  }
+
+  addPokemon = (pokemon) => {
+    this.setState({pokemons: [...this.state.pokemons, pokemon]})
   }
 
   searchPokemon = (e, {value}) => {
     this.setState({filteredPokemons: this.state.pokemons.filter(pokemon => pokemon.name.includes(value))})
   }
+
+
 
   fetchPokemon() {
     fetch("http://localhost:3000/pokemon")
@@ -38,7 +49,7 @@ class PokemonPage extends React.Component {
         <br />
         <PokemonCollection  pokemons={this.state.filteredPokemons ? this.state.filteredPokemons : this.state.pokemons} />
         <br />
-        <PokemonForm />
+        <PokemonForm update={this.formUpdate} addPokemon={this.addPokemon} />
       </div>
     )
   }
