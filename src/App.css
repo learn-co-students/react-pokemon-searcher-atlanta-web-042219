@@ -21,3 +21,10 @@
 .App-intro {
   font-size: large;
 }
+
+#poke-form {
+	border: 0.10em solid black;
+	border-radius: 1em;
+	padding: 1em;
+	margin: 1em;
+}
