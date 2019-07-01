@@ -2,27 +2,24 @@ import React from 'react'
 import { Form } from 'semantic-ui-react'
 
 class PokemonForm extends React.Component {
-  constructor() {
-    super()
 
-    this.state = {
-      name: '',
-      hp: '',
-      frontUrl: '',
-      backUrl: ''
-    }
-  }
+  state = {hidden: true}
 
-  render() {
+  // constructor(props){
+  //   super(props)
+  // }
+
+
+  render(){
     return (
       <div>
-        <h3>Add a Pokemon!</h3>
-        <Form onSubmit={this.handleSubmit}>
+        <Form.Button onClick={(e)=> this.setState({ hidden: !this.state.hidden })}><h3>Add a Pokemon!</h3></Form.Button>
+        <Form id="poke-form" hidden={this.state.hidden} onSubmit={this.props.newPokemon}>
           <Form.Group widths="equal">
-            <Form.Input fluid label="Name" placeholder="Name" name="name" />
-            <Form.Input fluid label="hp" placeholder="hp" name="hp" />
-            <Form.Input fluid label="Front Image URL" placeholder="url" name="frontUrl" />
-            <Form.Input fluid label="Back Image URL" placeholder="url" name="backUrl" />
+            <Form.Input fluid label="Name" name="name" placeholder=" Name" />
+            <Form.Input fluid label="hp" name="hp" placeholder=" HP" />
+            <Form.Input fluid label="Front Image URL" name="frontUrl" placeholder=" url" />
+            <Form.Input fluid label="Back Image URL" name="backUrl" placeholder=" url" />
           </Form.Group>
           <Form.Button>Submit</Form.Button>
         </Form>
